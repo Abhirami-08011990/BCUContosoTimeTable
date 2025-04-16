@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "8fb0eaae-84f5-42c3-9e47-81c576418fd2",
+		"name": "Feature-3786-Contoso Timetable API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33840676"
+	},
+	"item": [
+		{
+			"name": "3790-GET CourseSort Options",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/course/page/{{pageNumber}}?sortOptions={{sortOptions}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"course",
+						"page",
+						"{{pageNumber}}"
+					],
+					"query": [
+						{
+							"key": "sortOptions",
+							"value": "{{sortOptions}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3792-PUT Update New Course Name",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/event/{{eventId}}/name?newName=Manchester",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"event",
+						"{{eventId}}",
+						"name"
+					],
+					"query": [
+						{
+							"key": "newName",
+							"value": "Manchester"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3791 -GET Course Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/course/{{courseId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"course",
+						"{{courseId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3793-GET Event Sort Options",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/event/page/{{pageNumber}}?sortOptions={{sortOptions}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"event",
+						"page",
+						"{{pageNumber}}"
+					],
+					"query": [
+						{
+							"key": "sortOptions",
+							"value": "{{sortOptions}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3794-GET Event ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/event/{{eventId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"event",
+						"{{eventId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3796-GET Student Sort Options",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/page/{{pageNumber}}?sortOptions={{sortOptions}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"page",
+						"{{pageNumber}}"
+					],
+					"query": [
+						{
+							"key": "sortOptions",
+							"value": "{{sortOptions}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3797-GET Student ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/student/page/{{pageNumber}}?sortOptions={{sortOptions}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"page",
+						"{{pageNumber}}"
+					],
+					"query": [
+						{
+							"key": "sortOptions",
+							"value": "{{sortOptions}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3795-PUT Update New Event Location",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"location\": \"Aurore Alley\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/event/{{eventId}}/location?newLocation={{newLocation}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"event",
+						"{{eventId}}",
+						"location"
+					],
+					"query": [
+						{
+							"key": "newLocation",
+							"value": "{{newLocation}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3798-PUT Update New Student Name",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/student/{{studentId}}/name?newName={{newName}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"student",
+						"{{studentId}}",
+						"name"
+					],
+					"query": [
+						{
+							"key": "newName",
+							"value": "{{newName}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:7092",
+			"type": "string"
+		},
+		{
+			"key": "eventId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "courseId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "sortOptions",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "pageNumber",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "newLocation",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "studentId",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "newName",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
