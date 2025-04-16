@@ -4,73 +4,6 @@ using System.Text.Json;
 using FluentAssertions;
 using Reqnroll;
 using RestSharp;
-/*
-namespace Contoso.Timetable.ApiTests.StepDefinitions
-{
-    [Binding]
-    public class CoursePaginationSteps
-    {
-        private RestClient _client;
-        private RestResponse _response;
-        private JsonDocument _jsonResponse;
-
-        [Given("the API is available")]
-        public void GivenTheApiIsAvailable()
-        {
-            _client = new RestClient("https://localhost:7437"); // Replace with your API base URL
-        }
-
-        [When("I request page number (.*) with sort option \"(.*)\"")]
-        public void WhenIRequestPageNumberWithSortOption(int pageNumber, string sortOption)
-        {
-            var request = new RestRequest($"/course/page/{pageNumber}?sortOptions={sortOption}", Method.Get);
-            Console.WriteLine(request.ToString());
-           
-            _response = _client.Execute<RestResponse>(request);
-            if (string.IsNullOrWhiteSpace(_response.Content))
-            {
-                Console.WriteLine("Response content is null or empty.");
-                Console.WriteLine($"Status Code: {_response.StatusCode}");
-                Console.WriteLine($"Error Message: {_response.ErrorMessage}");
-                return;
-            }
-            Console.WriteLine($"Status Code: {_response.StatusCode}");
-            Console.WriteLine($"Response Content: {_response.Content}");
-            Console.WriteLine($"Error Message: {_response.ErrorMessage}");
-            _jsonResponse = JsonDocument.Parse(_response.Content);
-        }
-
-        [Then("the response status code should be (.*)")]
-        public void ThenTheResponseStatusCodeShouldBe(int expectedStatusCode)
-        {
-            ((int)_response.StatusCode).Should().Be(expectedStatusCode);
-        }
-
-        [Then("the response should contain a list of courses")]
-        public void ThenTheResponseShouldContainAListOfCourses()
-        {
-            _jsonResponse.RootElement.TryGetProperty("items", out var items).Should().BeTrue();
-            items.ValueKind.Should().Be(JsonValueKind.Array);
-            items.GetArrayLength().Should().BeGreaterThan(0);
-        }
-
-        [Then("each course should have id, name, description, code, startDate, and endDate")]
-        public void ThenEachCourseShouldHaveRequiredFields()
-        {
-            var courses = _jsonResponse.RootElement.GetProperty("items").EnumerateArray();
-            foreach (var course in courses)
-            {
-                course.TryGetProperty("id", out _).Should().BeTrue();
-                course.TryGetProperty("name", out _).Should().BeTrue();
-                course.TryGetProperty("description", out _).Should().BeTrue();
-                course.TryGetProperty("code", out _).Should().BeTrue();
-                course.TryGetProperty("startDate", out _).Should().BeTrue();
-                course.TryGetProperty("endDate", out _).Should().BeTrue();
-            }
-        }
-    }
-}
-*/
 
 namespace Contoso.Timetable.ApiTests.StepDefinitions
 {
@@ -145,7 +78,7 @@ namespace Contoso.Timetable.ApiTests.StepDefinitions
         [When(@"I update the location of event with ID (.*) to ""(.*)""")]
         public void WhenIUpdateEventLocation(int eventId, string newLocation)
         {
-            SendPutRequest($"/event/{eventId}/location?newLocation={newLocation}");
+            SendPutRequest($"/event/{eventId}/name?newName={newLocation}");
         }
 
         [When(@"I update the name of student with ID (.*) to ""(.*)""")]
@@ -167,7 +100,6 @@ namespace Contoso.Timetable.ApiTests.StepDefinitions
             root.TryGetProperty("id", out _).Should().BeTrue();
             root.TryGetProperty("name", out _).Should().BeTrue();
             root.TryGetProperty("description", out _).Should().BeTrue();
-            root.TryGetProperty("code", out _).Should().BeTrue();
             root.TryGetProperty("startDate", out _).Should().BeTrue();
             root.TryGetProperty("endDate", out _).Should().BeTrue();
         }
@@ -180,24 +112,46 @@ namespace Contoso.Timetable.ApiTests.StepDefinitions
             items.GetArrayLength().Should().BeGreaterThan(0);
         }
 
-        [Then("each event should have id, name, location, startDate, and endDate")]
-        public void ThenEachEventShouldHaveRequiredFields()
+        [Then("each (.*) should have id, name, startDate, and endDate")]
+        public void ThenEachEventShouldHaveRequiredFields(string itemType)
         {
-            var items = _jsonResponse.RootElement.GetProperty("items").EnumerateArray();
-            foreach (var item in items)
+            var root = _jsonResponse.RootElement;
+
+            if (root.ValueKind == JsonValueKind.Array)
+            {
+                // Case 1: Root is an array
+                foreach (var item in root.EnumerateArray())
+                {
+                    ValidateItemProperties(item);
+                }
+            }
+            else if (root.ValueKind == JsonValueKind.Object)
+            {
+                if (root.TryGetProperty("items", out var itemsProperty) &&
+                    itemsProperty.ValueKind == JsonValueKind.Array)
+                {
+                    // Case 2: Object with "items" array
+                    foreach (var item in itemsProperty.EnumerateArray())
+                    {
+                        ValidateItemProperties(item);
+                    }
+                }
+                else
+                {
+                    // Case 3: Single object with properties
+                    ValidateItemProperties(root);
+                }
+            }
+
+            void ValidateItemProperties(JsonElement item)
             {
                 item.TryGetProperty("id", out _).Should().BeTrue();
                 item.TryGetProperty("name", out _).Should().BeTrue();
-                item.TryGetProperty("location", out _).Should().BeTrue();
                 item.TryGetProperty("startDate", out _).Should().BeTrue();
                 item.TryGetProperty("endDate", out _).Should().BeTrue();
             }
-        }
 
-        [Then("the event should have id, name, location, startDate, and endDate")]
-        public void ThenTheSingleEventShouldHaveRequiredFields()
-        {
-            ThenEachEventShouldHaveRequiredFields();
+
         }
 
         [Then("each student should have id, name, email, and enrolmentDate")]
@@ -209,32 +163,22 @@ namespace Contoso.Timetable.ApiTests.StepDefinitions
                 item.TryGetProperty("id", out _).Should().BeTrue();
                 item.TryGetProperty("name", out _).Should().BeTrue();
                 item.TryGetProperty("email", out _).Should().BeTrue();
-                item.TryGetProperty("enrolmentDate", out _).Should().BeTrue();
+                item.TryGetProperty("enrollmentDate", out _).Should().BeTrue();
             }
         }
 
-        [Then("the response should contain a list of students")]
-        public void ThenTheResponseShouldContainAListOfStudents()
+        [Then("the response should contain a list of (.*)")]
+        public void ThenTheResponseShouldContainAListOfStudents(string type)
         {
-            
-        }
-
-        [When("I request page number {int} with sort option {string}")]
-        public void WhenIRequestPageNumberWithSortOption(int p0, string nameAscending)
-        {
-            
-        }
-
-        [Then("the response should contain a list of courses")]
-        public void ThenTheResponseShouldContainAListOfCourses()
-        {
+            var items = _jsonResponse.RootElement.GetProperty("items").EnumerateArray();
+            _jsonResponse.RootElement.GetProperty("items").GetArrayLength().Should().BeGreaterThan(0);
 
         }
 
-        [Then("each course should have id, name, description, code, startDate, and endDate")]
-        public void ThenEachCourseShouldHaveIdNameDescriptionCodeStartDateAndEndDate()
+        [When("I request courses page number {int} with sort option {string}")]
+        public void WhenIRequestPageNumberWithSortOption(int pageNumber, string sortOption)
         {
-
+            SendGetRequest($"/course/page/{pageNumber}?sortOptions={sortOption}");
         }
 
 

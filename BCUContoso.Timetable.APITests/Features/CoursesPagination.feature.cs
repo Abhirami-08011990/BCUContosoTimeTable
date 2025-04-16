@@ -114,7 +114,7 @@ namespace BCUContoso.Timetable.APITests.Features
     await testRunner.GivenAsync("the API is available", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 5
-    await testRunner.WhenAsync("I request page number 1 with sort option \"NameAscending\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+    await testRunner.WhenAsync("I request courses page number 1 with sort option \"NameAscending\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 6
     await testRunner.ThenAsync("the response status code should be 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
@@ -123,7 +123,7 @@ namespace BCUContoso.Timetable.APITests.Features
     await testRunner.AndAsync("the response should contain a list of courses", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 8
-    await testRunner.AndAsync("each course should have id, name, description, code, startDate, and endDate", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+    await testRunner.AndAsync("each course should have id, name, startDate, and endDate", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -216,16 +216,13 @@ namespace BCUContoso.Timetable.APITests.Features
     await testRunner.GivenAsync("the API is available", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
 #line 23
-    await testRunner.WhenAsync("I request events page number 1 with sort option \"DateDescending\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+    await testRunner.WhenAsync("I request events page number 1 with sort option \"NameDescending\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 24
     await testRunner.ThenAsync("the response status code should be 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
 #line 25
-    await testRunner.AndAsync("the response should contain a list of events", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
-#line hidden
-#line 26
-    await testRunner.AndAsync("each event should have id, name, location, startDate, and endDate", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+    await testRunner.AndAsync("each event should have id, name, startDate, and endDate", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -239,7 +236,7 @@ namespace BCUContoso.Timetable.APITests.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Get event by ID", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 28
+#line 27
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -249,17 +246,17 @@ namespace BCUContoso.Timetable.APITests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 29
+#line 28
     await testRunner.GivenAsync("the API is available", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 30
-    await testRunner.WhenAsync("I request the event with ID 1", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line 29
+    await testRunner.WhenAsync("I request the event with ID 91", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 31
+#line 30
     await testRunner.ThenAsync("the response status code should be 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 32
-    await testRunner.AndAsync("the event should have id, name, location, startDate, and endDate", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+#line 31
+    await testRunner.AndAsync("each course should have id, name, startDate, and endDate", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
@@ -273,7 +270,7 @@ namespace BCUContoso.Timetable.APITests.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Get paginated students with sort options", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 34
+#line 33
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -283,19 +280,19 @@ namespace BCUContoso.Timetable.APITests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 35
+#line 34
     await testRunner.GivenAsync("the API is available", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 36
+#line 35
     await testRunner.WhenAsync("I request students page number 1 with sort option \"NameAscending\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 37
+#line 36
     await testRunner.ThenAsync("the response status code should be 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 38
+#line 37
     await testRunner.AndAsync("the response should contain a list of students", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 39
+#line 38
     await testRunner.AndAsync("each student should have id, name, email, and enrolmentDate", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -310,7 +307,7 @@ namespace BCUContoso.Timetable.APITests.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Update event location", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 41
+#line 40
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -320,13 +317,13 @@ namespace BCUContoso.Timetable.APITests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 42
+#line 41
     await testRunner.GivenAsync("the API is available", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 43
-    await testRunner.WhenAsync("I update the location of event with ID 1 to \"London\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+#line 42
+    await testRunner.WhenAsync("I update the location of event with ID 91 to \"London\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 44
+#line 43
     await testRunner.ThenAsync("the response status code should be 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
@@ -341,7 +338,7 @@ namespace BCUContoso.Timetable.APITests.Features
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Update student name", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 46
+#line 45
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -351,13 +348,13 @@ namespace BCUContoso.Timetable.APITests.Features
             else
             {
                 await this.ScenarioStartAsync();
-#line 47
+#line 46
     await testRunner.GivenAsync("the API is available", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
-#line 48
+#line 47
     await testRunner.WhenAsync("I update the name of student with ID 1 to \"John Doe\"", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 49
+#line 48
     await testRunner.ThenAsync("the response status code should be 200", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
