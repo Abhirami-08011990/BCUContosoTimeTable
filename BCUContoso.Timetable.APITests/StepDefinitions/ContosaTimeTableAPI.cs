@@ -8,94 +8,71 @@ using RestSharp;
 namespace Contoso.Timetable.ApiTests.StepDefinitions
 {
     [Binding]
-    public class EventsAndStudentsSteps
+    public class ContosaTimeTableAPISteps
     {
-        private RestClient _client;
+        private readonly ApiUtils apiUtils;
         private RestResponse _response;
         private JsonDocument _jsonResponse;
 
-        [Given("the API is available")]
-        public void GivenTheApiIsAvailable()
+        public ContosaTimeTableAPISteps(ScenarioContext scenarioContext)
         {
-            _client = new RestClient("https://localhost:7437"); // Replace with your base URL
+            apiUtils = (ApiUtils)scenarioContext["apiUtils"];
         }
 
-        private void SendGetRequest(string endpoint)
-        {
-            var request = new RestRequest(endpoint, Method.Get);
-            _response = _client.Execute<RestResponse>(request);
-            LogResponse();
-            if (!string.IsNullOrWhiteSpace(_response.Content))
-                _jsonResponse = JsonDocument.Parse(_response.Content);
-        }
-
-        private void SendPutRequest(string endpoint)
-        {
-            var request = new RestRequest(endpoint, Method.Put);
-            _response = _client.Execute<RestResponse>(request);
-            LogResponse();
-            if (!string.IsNullOrWhiteSpace(_response.Content))
-                _jsonResponse = JsonDocument.Parse(_response.Content);
-        }
-
-        private void LogResponse()
-        {
-            Console.WriteLine($"Status Code: {_response.StatusCode}");
-            Console.WriteLine($"Response: {_response.Content}");
-            Console.WriteLine($"Error: {_response.ErrorMessage}");
-        }
-
+             
         [When(@"I update the name of event with ID (.*) to ""(.*)""")]
         public void WhenIUpdateTheEventName(int eventId, string newName)
         {
-            SendPutRequest($"/event/{eventId}/name?newName={newName}");
+            apiUtils.SendPutRequest($"/event/{eventId}/name?newName={newName}");
         }
 
         [When(@"I request the course with ID (.*)")]
         public void WhenIRequestTheCourseWithId(int courseId)
         {
-            SendGetRequest($"/course/{courseId}");
+            apiUtils.SendGetRequest($"/course/{courseId}");
         }
 
         [When(@"I request events page number (.*) with sort option ""(.*)""")]
         public void WhenIRequestEventsPageWithSort(int pageNumber, string sortOption)
         {
-            SendGetRequest($"/event/page/{pageNumber}?sortOptions={sortOption}");
+            apiUtils.SendGetRequest($"/event/page/{pageNumber}?sortOptions={sortOption}");
         }
 
         [When(@"I request the event with ID (.*)")]
         public void WhenIRequestTheEventWithId(int eventId)
         {
-            SendGetRequest($"/event/{eventId}");
+            apiUtils.SendGetRequest($"/event/{eventId}");
         }
 
         [When(@"I request students page number (.*) with sort option ""(.*)""")]
         public void WhenIRequestStudentsPageWithSort(int pageNumber, string sortOption)
         {
-            SendGetRequest($"/student/page/{pageNumber}?sortOptions={sortOption}");
+            apiUtils.SendGetRequest($"/student/page/{pageNumber}?sortOptions={sortOption}");
         }
 
         [When(@"I update the location of event with ID (.*) to ""(.*)""")]
         public void WhenIUpdateEventLocation(int eventId, string newLocation)
         {
-            SendPutRequest($"/event/{eventId}/name?newName={newLocation}");
+            apiUtils.SendPutRequest($"/event/{eventId}/name?newName={newLocation}");
         }
 
         [When(@"I update the name of student with ID (.*) to ""(.*)""")]
         public void WhenIUpdateStudentName(int studentId, string newName)
         {
-            SendPutRequest($"/student/{studentId}/name?newName={newName}");
+            apiUtils.SendPutRequest($"/student/{studentId}/name?newName={newName}");
         }
 
         [Then("the response status code should be (.*)")]
         public void ThenTheStatusCodeShouldBe(int statusCode)
         {
+            _response = apiUtils.GetRawResponse();
             ((int)_response.StatusCode).Should().Be(statusCode);
         }
 
         [Then("the course should contain id, name, description, code, startDate, and endDate")]
         public void ThenTheCourseShouldHaveFields()
         {
+            _jsonResponse = apiUtils.GetJsonResponse();
             var root = _jsonResponse.RootElement;
             root.TryGetProperty("id", out _).Should().BeTrue();
             root.TryGetProperty("name", out _).Should().BeTrue();
@@ -107,6 +84,7 @@ namespace Contoso.Timetable.ApiTests.StepDefinitions
         [Then("the response should contain a list of (events|students)")]
         public void ThenTheResponseShouldContainAListOf(string type)
         {
+            _jsonResponse = apiUtils.GetJsonResponse();
             _jsonResponse.RootElement.TryGetProperty("items", out var items).Should().BeTrue();
             items.ValueKind.Should().Be(JsonValueKind.Array);
             items.GetArrayLength().Should().BeGreaterThan(0);
@@ -115,6 +93,7 @@ namespace Contoso.Timetable.ApiTests.StepDefinitions
         [Then("each (.*) should have id, name, startDate, and endDate")]
         public void ThenEachEventShouldHaveRequiredFields(string itemType)
         {
+            _jsonResponse = apiUtils.GetJsonResponse();
             var root = _jsonResponse.RootElement;
 
             if (root.ValueKind == JsonValueKind.Array)
@@ -157,6 +136,7 @@ namespace Contoso.Timetable.ApiTests.StepDefinitions
         [Then("each student should have id, name, email, and enrolmentDate")]
         public void ThenEachStudentShouldHaveRequiredFields()
         {
+            _jsonResponse = apiUtils.GetJsonResponse();
             var items = _jsonResponse.RootElement.GetProperty("items").EnumerateArray();
             foreach (var item in items)
             {
@@ -170,6 +150,7 @@ namespace Contoso.Timetable.ApiTests.StepDefinitions
         [Then("the response should contain a list of (.*)")]
         public void ThenTheResponseShouldContainAListOfStudents(string type)
         {
+            _jsonResponse = apiUtils.GetJsonResponse();
             var items = _jsonResponse.RootElement.GetProperty("items").EnumerateArray();
             _jsonResponse.RootElement.GetProperty("items").GetArrayLength().Should().BeGreaterThan(0);
 
@@ -178,7 +159,7 @@ namespace Contoso.Timetable.ApiTests.StepDefinitions
         [When("I request courses page number {int} with sort option {string}")]
         public void WhenIRequestPageNumberWithSortOption(int pageNumber, string sortOption)
         {
-            SendGetRequest($"/course/page/{pageNumber}?sortOptions={sortOption}");
+            apiUtils.SendGetRequest($"/course/page/{pageNumber}?sortOptions={sortOption}");
         }
 
 
