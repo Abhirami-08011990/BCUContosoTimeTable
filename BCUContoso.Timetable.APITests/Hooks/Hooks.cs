@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BCUContoso.Timetable.APITests.Utils;
+using OpenQA.Selenium;
 using Reqnroll;
 
 namespace BCUContoso.Timetable.APITests.Hooks
@@ -12,10 +14,12 @@ namespace BCUContoso.Timetable.APITests.Hooks
     public class Hooks
     {
         private readonly ScenarioContext _scenarioContext;
+        private readonly FeatureContext _featureContext;
 
-        public Hooks(ScenarioContext scenarioContext)
+        public Hooks(ScenarioContext scenarioContext, FeatureContext featureContext)
         {
             _scenarioContext = scenarioContext;
+            _featureContext = featureContext;
         }
 
         [Given("Contosa Time Table API is available")]
@@ -31,16 +35,22 @@ namespace BCUContoso.Timetable.APITests.Hooks
         {
             var web = new WebDriverManager();
             _scenarioContext["web"] = web;
-            web.LaunchBrowser("https://localhost:7437");
+            web.LaunchBrowser("https://localhost:7092/students");
 
         }
 
-        //[AfterScenario]
-        //public void AfterScenario()
-        //{
-        //    var web = (WebDriverManager)_scenarioContext["web"];
-        //    web.QuitBrowser();
-        //}
+        [AfterScenario]
+        public void AfterScenario()
+        {
+                                    
+            if (_featureContext.FeatureInfo.Tags.Contains("web"))
+            {
+                var web = (WebDriverManager)_scenarioContext["web"];
+                web.QuitBrowser();
+            }
+        }
+
+
     }
 
 }

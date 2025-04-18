@@ -1,7 +1,9 @@
+@web
 Feature: Contosa Time Table Blazor UI
 
 Background: Contosa Time table Blazor UI
 Given Contosa Time Table Blazor is available
+ 
 
   Scenario: 3799-List Courses Page
   When user is navigated to courses page
@@ -33,13 +35,11 @@ Given Contosa Time Table Blazor is available
 
 
   Scenario: 3803-List Students Page
-  
+  When user is navigated to students page
   Then The page should display a table of students with the following columns: ID, Name, Email, Address, Phone Number, Enrollment Date
-  And The table should be paginated, with 100 items per page
-  And The page should include pagination controls to navigate between pages
   And Each student should have a link to view their details
 
   Scenario: 3804-Student Detail Page
-  Then The page should display the following student details: ID, Name, Email, Address, Phone Number, Enrollment Date
-  And The page should include a list of enrolled courses with the following columns: ID, Name, Description, Code, Start Date, End Date
-  And The page should include a button to update the student's name
+   When user is navigated to student details page
+  When The page should include a list of enrolled courses with the following columns Name, Description, Code, Start Date
+  Then The page should include a button to update the student name

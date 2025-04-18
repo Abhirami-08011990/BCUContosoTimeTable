@@ -19,12 +19,14 @@ namespace BCUContoso.Timetable.APITests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "2.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [Xunit.TraitAttribute("Category", "web")]
     public partial class ContosaTimeTableBlazorUIFeature : object, Xunit.IClassFixture<ContosaTimeTableBlazorUIFeature.FixtureData>, Xunit.IAsyncLifetime
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
-        private static string[] featureTags = ((string[])(null));
+        private static string[] featureTags = new string[] {
+                "web"};
         
         private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Features", "Contosa Time Table Blazor UI", null, global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
@@ -84,9 +86,9 @@ namespace BCUContoso.Timetable.APITests.Features
         
         public virtual async System.Threading.Tasks.Task FeatureBackgroundAsync()
         {
-#line 3
-#line hidden
 #line 4
+#line hidden
+#line 5
 await testRunner.GivenAsync("Contosa Time Table Blazor is available", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
 #line hidden
         }
@@ -109,7 +111,7 @@ await testRunner.GivenAsync("Contosa Time Table Blazor is available", ((string)(
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("3799-List Courses Page", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+#line 8
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -119,20 +121,20 @@ await testRunner.GivenAsync("Contosa Time Table Blazor is available", ((string)(
             else
             {
                 await this.ScenarioStartAsync();
-#line 3
+#line 4
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 7
+#line 9
   await testRunner.WhenAsync("user is navigated to courses page", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 8
+#line 10
   await testRunner.ThenAsync("The page should display a table of courses with the following columns: ID, Name, " +
                         "Description, Code, Start Date, End Date", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 9
+#line 11
   await testRunner.AndAsync("The table should be paginated, with 100 items per page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 10
+#line 12
   await testRunner.AndAsync("The page should include pagination controls to navigate between pages", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -147,7 +149,7 @@ await this.FeatureBackgroundAsync();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("3800-Course Detail Page", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 13
+#line 15
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -157,17 +159,17 @@ await this.FeatureBackgroundAsync();
             else
             {
                 await this.ScenarioStartAsync();
-#line 3
+#line 4
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 14
+#line 16
   await testRunner.WhenAsync("user is navigated to a course page", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 15
+#line 17
   await testRunner.ThenAsync("The page should display the following course details: ID, Name, Description, Code" +
                         ", Start Date, End Date", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 16
+#line 18
   await testRunner.AndAsync("The page should include a list of enrolled students with the following columns: I" +
                         "D, Name, Email, Address, Phone Number, Enrollment Date", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
@@ -183,7 +185,7 @@ await this.FeatureBackgroundAsync();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("3801-List Events Page", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 19
+#line 21
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -193,23 +195,23 @@ await this.FeatureBackgroundAsync();
             else
             {
                 await this.ScenarioStartAsync();
-#line 3
+#line 4
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 20
+#line 22
   await testRunner.WhenAsync("user is navigated to events page", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 21
+#line 23
   await testRunner.ThenAsync("The page should display a table of events with the following columns: ID, Name, D" +
                         "escription, Start Date, End Date, Location", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 22
+#line 24
   await testRunner.AndAsync("The table should be paginated, with 100 items per page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 23
+#line 25
   await testRunner.AndAsync("The page should include pagination controls to navigate between pages", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 24
+#line 26
   await testRunner.AndAsync("Each event should have a link to view its details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -224,7 +226,7 @@ await this.FeatureBackgroundAsync();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("3802-Event Detail Page", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 27
+#line 29
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -234,24 +236,24 @@ await this.FeatureBackgroundAsync();
             else
             {
                 await this.ScenarioStartAsync();
-#line 3
+#line 4
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 28
+#line 30
   await testRunner.WhenAsync("user is navigated to event details page", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
-#line 29
+#line 31
   await testRunner.ThenAsync("The page should display the following event details: ID, Name, Description, Start" +
                         " Date, End Date, Location", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
-#line 30
+#line 32
   await testRunner.AndAsync("The page should include the course details with the following properties: ID, Nam" +
                         "e, Description, Code, Start Date, End Date", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 31
+#line 33
   await testRunner.AndAsync("The page should include a button to update the event location", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
-#line 32
+#line 34
   await testRunner.AndAsync("The button should open a modal dialog to enter the new location", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
             }
@@ -266,7 +268,7 @@ await this.FeatureBackgroundAsync();
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("3803-List Students Page", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 35
+#line 37
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -276,18 +278,15 @@ await this.FeatureBackgroundAsync();
             else
             {
                 await this.ScenarioStartAsync();
-#line 3
+#line 4
 await this.FeatureBackgroundAsync();
 #line hidden
-#line 37
-  await testRunner.ThenAsync("The page should display a table of students with the following columns: ID, Name," +
-                        " Email, Address, Phone Number, Enrollment Date", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
-#line hidden
 #line 38
-  await testRunner.AndAsync("The table should be paginated, with 100 items per page", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+  await testRunner.WhenAsync("user is navigated to students page", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 39
-  await testRunner.AndAsync("The page should include pagination controls to navigate between pages", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+  await testRunner.ThenAsync("The page should display a table of students with the following columns: ID, Name," +
+                        " Email, Address, Phone Number, Enrollment Date", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
 #line 40
   await testRunner.AndAsync("Each student should have a link to view their details", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
@@ -314,19 +313,18 @@ await this.FeatureBackgroundAsync();
             else
             {
                 await this.ScenarioStartAsync();
-#line 3
+#line 4
 await this.FeatureBackgroundAsync();
 #line hidden
 #line 43
-  await testRunner.ThenAsync("The page should display the following student details: ID, Name, Email, Address, " +
-                        "Phone Number, Enrollment Date", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+   await testRunner.WhenAsync("user is navigated to student details page", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 44
-  await testRunner.AndAsync("The page should include a list of enrolled courses with the following columns: ID" +
-                        ", Name, Description, Code, Start Date, End Date", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+  await testRunner.WhenAsync("The page should include a list of enrolled courses with the following columns Nam" +
+                        "e, Description, Code, Start Date", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
 #line 45
-  await testRunner.AndAsync("The page should include a button to update the student\'s name", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+  await testRunner.ThenAsync("The page should include a button to update the student name", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();
